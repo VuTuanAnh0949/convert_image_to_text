@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 100vh;
+  flex-direction: column;
+  background: url("/images/bgsvg.svg");
+}
+.title {
+  color: #fff;
+  font-size: 2.5rem;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+.drag-area {
+  border: none;
+  height: 50vh;
+  min-height: 400px;
+  min-width: 500px;
+  padding: 1rem;
+  width: 60vw;
+  background: #8570ed;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  -webkit-box-shadow: 2px 5px 12px 1px rgba(0, 0, 0, 0.59);
+  box-shadow: 2px 5px 12px 1px rgba(0, 0, 0, 0.59);
+}
+
+.drag-area .icon {
+  text-align: center;
+  font-size: 120px;
+  color: #fff;
+}
+.drag-area header {
+  font-size: 30px;
+  font-weight: 500;
+  color: #fff;
+}
+.mid {
+  font-size: 25px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+.drag-area img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.image {
+  min-height: 200px;
+  min-width: 400px;
+  max-height: 30vh;
+  max-width: 40vw;
+}
+.spinner {
+  position: absolute;
+  max-width: 100px;
+  max-height: 100px;
+}
+.btn {
+  margin: 2rem;
+  border: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0.5rem 0.9rem;
+  outline: none;
+  color: #fff;
+  text-decoration: none;
+
+  font-size: 1rem;
+  letter-spacing: 1px;
+  border-radius: 40px;
+  background: linear-gradient(to right, rgb(142, 45, 226), rgb(74, 0, 224));
+}
+
+.btn .ripple {
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+  10% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #d72323; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 5px; /* Rounded borders */
+  padding: 0.6rem 0.8rem; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 90%; /* Center the snackbar */
+  top: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 3s;
+  animation: fadein 0.5s, fadeout 0.5s 3s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}
+.text {
+  width: 80%;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 12px 1px rgba(0, 0, 0, 0.59);
+  box-shadow: 2px 5px 12px 1px rgba(0, 0, 0, 0.59);
+}
+@media only screen and (max-width: 650px) {
+  .drag-area {
+    min-width: 300px;
+  }
+  #snackbar {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9rem;
+  }
+  .image {
+    min-width: 250px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .drag-area {
+    min-width: 250px;
+  }
+  #snackbar {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  .image {
+    min-width: 180px;
+  }
+}
+@media only screen and (max-height: 550px) {
+  .drag-area {
+    min-height: 320px;
+    height: 60vh;
+    margin-bottom: 2rem;
+  }
+  .btn {
+    margin: 0.9rem;
+    font-size: 0.8rem;
+  }
+  .mid {
+    font-size: 1.2rem;
+  }
+  .icon {
+    font-size: 20px;
+  }
+  .image {
+    min-height: 150px;
+  }
+}

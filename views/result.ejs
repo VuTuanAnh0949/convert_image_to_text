@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"
+      integrity="sha512-WiGQZv8WpmQVRUFXZywo7pHIO0G/o3RyiAJZj8YXNN4AV7ReR1RYWVmZJ6y3H06blPcjJmG/sBpOVZjTSFFlzQ=="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Result</title>
+  </head>
+  <body>
+    <a style="color: #fff; text-decoration: none; font-weight: 600" href="/"
+      ><button class="btn">Convert Again</button></a
+    >
+
+    <h1 style="color: #fff; text-align: center">
+      Here's what we could extract
+    </h1>
+    <div class="text">
+      <h3><%=text%></h3>
+      <i style="font-size: 0.8rem; text-align: center"
+        >We don't keep your data, your images are deleted as soon as they are
+        processed.</i
+      >
+    </div>
+
+    <button class="btn" id="dnBtn">Download .txt file</button>
+  </body>
+  <script>
+    document.querySelector("#dnBtn").addEventListener("click", () => {
+      var text = `<%= text %>`;
+      download(text, "result.txt", "text/plain");
+    });
+
+    var buttons = document.getElementsByTagName("button");
+
+    Array.prototype.forEach.call(buttons, function (b) {
+      b.addEventListener("click", createRipple);
+    });
+
+    function createRipple(e) {
+      if (this.getElementsByClassName("ripple").length > 0) {
+        this.removeChild(this.childNodes[1]);
+      }
+
+      var circle = document.createElement("div");
+      this.appendChild(circle);
+
+      var d = Math.max(this.clientWidth, this.clientHeight);
+      circle.style.width = circle.style.height = d + "px";
+
+      circle.style.left = e.clientX - this.offsetLeft - d / 2 + "px";
+      circle.style.top = e.clientY - this.offsetTop - d / 2 + "px";
+      //console.log("enter");
+      circle.classList.add("ripple");
+    }
+  </script>
+</html>
